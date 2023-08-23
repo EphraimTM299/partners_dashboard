@@ -2,6 +2,7 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import logo from '../images/teillo.svg'
 
 export default function Signin() {
   const [email, setEmail] = useState('');

@@ -4,10 +4,20 @@ import{FaShoppingBag} from 'react-icons/fa'
 import{BsPersonFill, BsThreeDotsVertical} from 'react-icons/bs'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
+import { db } from '../firebase'
 
 
 
-const orders = () => {
+
+
+
+const orders = async () => {
+    
+      // 
+
+
+    // Read items from database
+
     
   return (
     <Sidebar>
@@ -17,21 +27,21 @@ const orders = () => {
             
             <div className='w-full m-auto border rounded-lg bg-white overflow-y-auto'>
                 <div className='my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
-                    <span>Orders</span>
-                    <span className='sm:text-left text-right'>Status</span>
-                    <span className='hidden md:grid'>Last Order</span>
-                    <span className='hidden sm:grid'>Method</span>
+                    <span className='text-md'>Orders</span>
+                    <span className='sm:text-left text-md text-right'>Status</span>
+                    <span className='hidden text-md md:grid'>Last Order</span>
+                    <span className='hidden text-md sm:grid'>Method</span>
                 </div>
 
                 <ul>
                     {data.map((order, id)=>(
-                        <li key={id} className='bg-gray-50 hover:bg-gray100 rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3 items-center justify-between cursor-pointer'>
+                        <li key={id} className='bg-gray-50 text-sm hover:bg-gray100 rounded-lg my-3 p-2 grid  md:grid-cols-4 sm:grid-cols-3 items-center justify-between cursor-pointer'>
                             <div className='flex'>
                                 <div className='bg-purple-100 p-3 rounded-lg'>
                                     <FaShoppingBag className='text-purple-800'/>
                                 </div>
                                 <div className='pl-4'>
-                                    <p className='text-gray-800 font-bold'>${order.total.toLocaleString()}</p>
+                                    <p className='text-gray-800 font-bold'>R{order.total.toLocaleString()}</p>
                                     <p className='text-gray-800 text:sm'>{order.name.first}</p>
                                 </div>
                             </div>
