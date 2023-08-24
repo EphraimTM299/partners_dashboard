@@ -11,30 +11,46 @@ const Sidebar = ({children}) => {
     <div className='flex'>
         <div className='fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
             <div className='flex flex-col items-center'>
-                <Link href='/'>
+                <Link href='/dashboard'>
                     <div className='bg-purple-800 p-3 rounded-lg inline-block text-white'>
                         <RxSketchLogo size={20}/>
                     </div>
+                   
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
 
-                <Link href="/">
-                    <div className='bg-gray-100 p-3 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                <Link href="/dashboard">
+                    <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <RxDashboard size={20}/>
                     </div>
+                    
+                    <div>
+                        <p className='text-xs'>Dashboard</p>
+                    </div>
                 </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
                 <Link href="/orders">
-                    <div className='bg-gray-100 p-3 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <HiOutlineShoppingBag size={20}/>
                     </div>
-                </Link>
-                <Link href="/customers">
-                    <div className='bg-gray-100 p-3 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
-                    <RxPerson size={20}/>
+
+                    <div>
+                        <p className='text-xs px-2'>Orders</p>
                     </div>
                 </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+                <Link href="/customers">
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                    <RxPerson size={20}/>
+                    </div>
+
+                    <div>
+                        <p className='text-xs'>Customers</p>
+                    </div>
+                </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
                 <Link href="/settings">
-                    <div className='bg-gray-100 p-3 cursor-pointer my-4 hover:bg-gray-200 inline-block rounded-lg'>
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <FiSettings size={20}/>
                     </div>
                 </Link>

@@ -2,12 +2,15 @@
 import { useState } from 'react';
 import { auth } from '../firebase';
 import { sendPasswordResetEmail } from "firebase/auth";
+import { redirect } from 'next/navigation';
+import router from 'next/router';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
 
   const resetEmail = () => {
-    sendPasswordResetEmail(auth, email);
+    sendPasswordResetEmail(auth, email,);
+    
   };
 
   return (
@@ -45,7 +48,9 @@ export default function ForgotPassword() {
 
             <div>
               <button
-                onClick={() => resetEmail()}
+                onClick={() => {resetEmail(),
+                  router.push('signin')
+                }}
                 disabled={!email}
                 className="disabled:opacity-40 flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
