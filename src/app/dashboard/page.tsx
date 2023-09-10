@@ -10,7 +10,7 @@ import SideBar from '../components/Sidebar'
 import { Suspense } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 
-export default function Dasboard() {
+export default function Dashboard() {
     
 
   const session = useSession({
@@ -58,4 +58,4 @@ export default function Dasboard() {
   )
 }
 
-Dasboard.requireAuth = true
+Dashboard.requireAuth = true

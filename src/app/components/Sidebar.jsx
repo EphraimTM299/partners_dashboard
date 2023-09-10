@@ -1,10 +1,14 @@
+'use client';
+
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {RxSketchLogo, RxDashboard, RxPerson} from 'react-icons/rx'
+import {BiCartAdd} from 'react-icons/bi'
+import { signOut, useSession } from 'next-auth/react';
 
 import { FiSettings } from 'react-icons/fi'
-import {HiOutlineShoppingBag} from 'react-icons/hi'
+import {HiOutlineShoppingBag, HiOutlineLogout} from 'react-icons/hi'
 
 const Sidebar = ({children}) => {
   return (
@@ -13,47 +17,64 @@ const Sidebar = ({children}) => {
             <div className='flex flex-col items-center'>
                 <Link href='/dashboard'>
                     <div className='bg-purple-800 p-3 rounded-lg inline-block text-white'>
-                        <RxSketchLogo size={20}/>
+                        <RxDashboard size={20}/>
                     </div>
                    
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
 
-                <Link href="/dashboard">
-                    <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
-                    <RxDashboard size={20}/>
+                <Link href="/create-order">
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                    <BiCartAdd size={20}/>
                     </div>
-                    
+
                     <div>
-                        <p className='text-xs'>Dashboard</p>
+                        <p className='text-xs px-2 font-semibold'> New Order</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+
+
                 <Link href="/orders">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <HiOutlineShoppingBag size={20}/>
                     </div>
 
                     <div>
-                        <p className='text-xs px-2'>Orders</p>
+                        <p className='text-xs px-2 font-semibold'> Active Orders</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
-                <Link href="/customers">
+                <Link href="/history">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <RxPerson size={20}/>
                     </div>
 
                     <div>
-                        <p className='text-xs'>Customers</p>
+                    <p className='text-xs px-2 font-semibold'>Metrics</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
-                <Link href="/settings">
+                <Link href="/banking">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <FiSettings size={20}/>
                     </div>
+                    
+                    <div>
+                        <p className='text-xs px-2 font-semibold'>Banking</p>
+                    </div>
                 </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+                <Link  onClick={() => signOut( {callbackUrl:"/signin"})} href="">
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                    <HiOutlineLogout size={20}/>
+                    </div>
+                    
+                    <div>
+                        <p className='text-xs px-2 font-semibold'>LogOut</p>
+                    </div>
+                </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
             </div>
 
 
