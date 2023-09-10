@@ -1,16 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { data } from '../data/data'
-import{FaShoppingBag} from 'react-icons/fa'
-import{BsPersonFill, BsThreeDotsVertical} from 'react-icons/bs'
 import Sidebar from '../components/Sidebar'
-import Header from '../components/Header'
-import moment from 'moment';
-import {RxSketchLogo, RxDashboard, RxPerson} from 'react-icons/rx'
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import {RxPerson} from 'react-icons/rx'
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 import { Chart as ChartJS, 
          ArcElement,
         Tooltip,
@@ -24,9 +18,7 @@ import { Doughnut, Line } from 'react-chartjs-2';
 
 import {
   collection,
-  addDoc,
-  getDoc,
-//   querySnapshot,
+  //   querySnapshot,
   query,
   onSnapshot,
   deleteDoc,
@@ -34,7 +26,6 @@ import {
   doc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import Example from '../components/dropdown';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -50,7 +41,7 @@ ChartJS.register(
   CategoryScale,
 )
 
-const Orders =  () => {
+export default function History()  {
   const [ items, setItems] = useState([
     // { name: 'Coffee', price: 4.95 },
     // { name: 'Movie', price: 24.95 },
@@ -169,8 +160,20 @@ const Orders =  () => {
   const deleteItem = async (id) => {
     await deleteDoc(doc(db, 'items', id));
   };
+
+  const session = useSession({
+    required: true,
+    
+    onUnauthenticated() {
+       
+      redirect('/signin');
+    },
+    
+    
+  });
     
   return (
+    
     <Sidebar>
     
     <div className='bg-gray-100 min-h-screen'>
@@ -352,4 +355,4 @@ const Orders =  () => {
   )
 }
 
-export default Orders
+History.requireAuth = true

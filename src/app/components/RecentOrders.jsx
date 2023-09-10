@@ -1,34 +1,23 @@
 'use client';
-
-
-import { data } from '../data/data'
 import {FaShoppingBag}from 'react-icons/fa'
-
 import React, { useState, useEffect } from 'react';
 import {
   collection,
-  addDoc,
-  getDoc,
-//   querySnapshot,
+  //   querySnapshot,
   query,
   onSnapshot,
-  deleteDoc,
-  doc,
   where,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const RecentOrders = () => {
     const [items, setItems] = useState([
-        // { name: 'Coffee', price: 4.95 },
-        // { name: 'Movie', price: 24.95 },
-        // { name: 'candy', price: 7.95 },
+       
       ]);
 
     useEffect(() =>  {
         const q = query(collection(db, 'orders'));
-        // const q = db.collection('laundromat');
-    
+           
         const queryRef = query(q, where('laundromat', '==', 'WashALot'));
         const unsubscribe = onSnapshot(queryRef, (querySnapshot) => {
           let itemsArr = [];
@@ -37,8 +26,7 @@ const RecentOrders = () => {
             itemsArr.push({ ...doc.data(), id: doc.id });
           });
           setItems(itemsArr);
-         
-         
+                  
           return () => unsubscribe();
         });
       }, []);

@@ -1,9 +1,23 @@
+'use client';
 
 import React from 'react'
 import Sidebar from '../components/Sidebar'
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 
 export default function Banking() {
+
+    const session = useSession({
+        required: true,
+        
+        onUnauthenticated() {
+           
+          redirect('/signin');
+        },
+        
+        
+      });
     const bankName = [
         
     ]
@@ -100,3 +114,5 @@ return (
 
     )
 }
+
+Banking.requireAuth = true

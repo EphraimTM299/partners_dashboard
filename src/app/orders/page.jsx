@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar'
 import moment from 'moment';
 import {RxPerson} from 'react-icons/rx'
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 import {
   collection,
@@ -25,7 +27,15 @@ function classNames(...classes) {
 }
 
 
-const Orders =  () => {
+export default function Orders  () {
+const session = useSession({
+    required: true,
+    
+    onUnauthenticated() {
+       
+      redirect('/signin');
+    },});
+
   const [ items, setItems] = useState([
     
   ]);
@@ -33,7 +43,7 @@ const Orders =  () => {
   // Read items from the database
   useEffect(() =>  {
     const q = query(collection(db, 'orders'));
-    // const q = db.collection('laundromat');
+  
 
     const queryRef = query(q, where('laundromat', '==', 'WashALot' ), orderBy("pickup"));
     const unsubscribe = onSnapshot(queryRef, (querySnapshot) => {
@@ -50,12 +60,10 @@ const Orders =  () => {
     });
   }, []);
 
-  // Delete items from database
+  // Update items in database
   const updateOrder = async (orderId, orderStatus) => {
     
     const order = doc(db, "orders", orderId);
-
-   
 
     try {
       await updateDoc(order,{
@@ -79,7 +87,7 @@ const Orders =  () => {
     <div className='flex justify-between px-6 pt-4'>
     <h2 className='text-xl font-semibold'>Active Orders</h2>
      
-      <h2>Welcome Back, Tom</h2>
+      <h2>Welcome Back, User</h2>
     </div>
 
 <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
@@ -179,4 +187,4 @@ const Orders =  () => {
   )
 }
 
-export default Orders
+Orders.requireAuth = true

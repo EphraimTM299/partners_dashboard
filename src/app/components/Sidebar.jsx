@@ -65,7 +65,7 @@ const Sidebar = ({children}) => {
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
-                <Link  onClick={() => signOut( {callbackUrl:"/signin"})} href="">
+                <Link  onClick={() => signOut( {callbackUrl:"/"})} href="">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <HiOutlineLogout size={20}/>
                     </div>
