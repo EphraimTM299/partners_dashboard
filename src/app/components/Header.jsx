@@ -5,7 +5,7 @@ const Header = () => {
     <div className='flex justify-between px-6 pt-4'>
      <h2>Dashboard</h2>
      
-      <h2>Welcome Back, Tom</h2>
+      <h2>Welcome Back, E</h2>
     </div>
   )
 }

@@ -4,9 +4,56 @@ import React from 'react'
 import Sidebar from '../components/Sidebar'
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { GeoPoint, addDoc,Timestamp, collection, doc, getFirestore, setDoc} from 'firebase/firestore';
+import { db } from '../firebase';
+
 
 
 export default function Banking() {
+
+    const { register,setValue, handleSubmit } = useForm({
+        criteriaMode: "all",
+      });
+
+    async function sendData (bankName, accountNumber, branchCode, accountType) {
+
+        try {
+           addDoc(collection(db, 'ordertest'), {
+            bankName:bankName,
+            branchCode:branchCode,
+            accountNumber:accountNumber, 
+            accountType:accountType
+            
+           //  pricelist:pricelist
+          }).then(result => alert("item added"));
+        } catch (error) {
+          alert(error);
+        }
+      }
+
+      const onSubmit = async (data, event) => {
+
+        try {
+            sendData(
+            data.bankName,
+            data.accountNumber,
+            data.branchCode,
+            data.accountType
+             )            
+             
+            } catch (error) {
+                alert(error);
+            }
+        
+        // data.preventDefault();
+        console.log("data",data.email);
+        console.log(event);
+        // throw new Error();
+      
+      } 
+      
 
     const session = useSession({
         required: true,
@@ -18,9 +65,7 @@ export default function Banking() {
         
         
       });
-    const bankName = [
-        
-    ]
+    
   
 
 return (
@@ -35,25 +80,35 @@ return (
         
 <div class="overflow-hidden w-3/4 bg-white justify-center flex flex-wrap rounded-lg border border-gray-200 shadow-md m-5">
             
-        <form className='px-4 py-10   w-full sm:w-1/2  '>
+        <form onSubmit={handleSubmit(onSubmit)} className='px-4 py-10   w-full sm:w-1/2  '>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Name</label>
-                        <select  className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
-                            <option value="Laundry">First National Bank (FNB)</option>
-                            <option value="Dry Cleaning">ABSA</option>
-                            <option value="Processing">Nedbank</option>
-                            <option value="Done Processing">Standard Bank</option>
+                        <label for="bankName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Name</label>
+                        <select {...register("bankName", { required: true, 
+         
+        }
+        )} className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
+                            <option >First National Bank (FNB)</option>
+                            <option >ABSA</option>
+                            <option >Nedbank</option>
+                            <option >Standard Bank</option>
                             
-                        </select>                    </div>
+                        </select>
+                        </div>
                     <div>
                         <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account Number</label>
-                        <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="65658545814" required/>
+                        <input {...register("accountNumber", { required: true, 
+         
+        }
+        )} type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="65658545814" required/>
                     </div>
                     
                     <div>
-                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Branch Code</label>
-                        <input type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  required/>
+                        <label for="Branch Code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Branch Code</label>
+                        <input {...register("branchCode", { required: true, 
+         
+        }
+        )} type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  required/>
                     </div>
                   
 
@@ -61,11 +116,14 @@ return (
                     <div>
                     
                         <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bank Account Type</label>
-                        <select  className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
-                            <option value="Laundry">Business</option>
-                            <option value="Dry Cleaning">Transmission</option>
-                            <option value="Processing">Current</option>
-                            <option value="Done Processing">Savings</option>
+                        <select {...register("accountType", { required: true, 
+         
+        }
+        )}  className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
+                            <option >Business</option>
+                            <option >Transmission</option>
+                            <option >Current</option>
+                            <option >Savings</option>
                             
                         </select>
                     </div>
@@ -77,12 +135,7 @@ return (
                 <input class="block w-full text-sm mb-8 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
 
 
-                <div class="flex items-start mb-6">
-                    <div class="flex items-center h-5">
-                    <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required/>
-                    </div>
-                    <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
-                </div>
+               
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit Account Details</button>
 
         </form>

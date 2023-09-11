@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/products/page.jsx", "src/app/orders/page.tsx", "src/app/history/page.jsx", "src/app/components/modal.jsx", "src/app/create-order/page.jsx", "src/app/banking/page.jsx", "src/app/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/products/page.jsx", "src/app/orders/page.tsx", "src/app/history/page.jsx", "src/app/components/modal.jsx", "src/app/create-order/page.jsx", "src/app/banking/page.jsx", "src/app/page.tsx", "src/app/dashboard/page.jsx"],
   "exclude": ["node_modules"]
 }
