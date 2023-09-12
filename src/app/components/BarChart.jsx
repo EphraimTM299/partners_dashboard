@@ -35,15 +35,15 @@ const BarChart = () => {
                 {
                     label:'Sales R',
                     data:[18288,22333,19940,17980,24182,17847,22476],
-                    borderColor: 'rgb(50,160,233)',
-                    backgroundColor:'rgb(53,162,235, 0.4)',
+                    borderColor: 'rgb(61,90,254)',
+                    backgroundColor:'rgb(33,150,243, 0.5)',
                 },
             ]
         })
         setChartOptions({
             plugins:{
                 legend:{
-                    position:'top',
+                    position:'bottom',
                 },
                 title:{
                     display: true,
@@ -55,7 +55,7 @@ const BarChart = () => {
         });
     }, [])
   return (
-    <div className='w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
+    <div className='w-full md:col-span-2 relative lg:h-[80vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
       <Bar data={chartData} options={chartOptions}/>
     </div>
   )

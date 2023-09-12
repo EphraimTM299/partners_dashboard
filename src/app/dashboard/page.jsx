@@ -63,7 +63,8 @@ export default function Dashboard() {
     <div className='flex justify-between px-6 pt-4'>
     <h2>{item.laundromatName} Dashboard</h2>
 
-      <h2>Welcome Back, {item.userName}</h2>
+      {/* <h2>Welcome Back, {item.userName}</h2> */}
+      <h2>Welcome Back, Manager</h2>
     </div>
     <TopCards />
     <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
