@@ -41,7 +41,18 @@ const Sidebar = ({children}) => {
                     </div>
 
                     <div>
-                        <p className='text-xs px-2 font-semibold'> Active Orders</p>
+                    <p className='text-xs px-2 font-semibold'> Active Orders</p>
+                    </div>
+                </Link>
+                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+                
+                <Link href="/banking">
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                    <FiSettings size={20}/>
+                    </div>
+                    
+                    <div>
+                        <p className='text-xs px-2 font-semibold'>Banking</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
@@ -52,16 +63,6 @@ const Sidebar = ({children}) => {
 
                     <div>
                     <p className='text-xs px-2 font-semibold'>Metrics</p>
-                    </div>
-                </Link>
-                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
-                <Link href="/banking">
-                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
-                    <FiSettings size={20}/>
-                    </div>
-                    
-                    <div>
-                        <p className='text-xs px-2 font-semibold'>Banking</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
