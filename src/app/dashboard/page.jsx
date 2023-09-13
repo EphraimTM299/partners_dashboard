@@ -39,7 +39,7 @@ export default function Dashboard() {
         itemsArr.push({ ...doc.data(), id: doc.id });
       });
       setItems(itemsArr);
-      console.log(itemsArr)
+      // console.log(itemsArr)
       
       return () => unsubscribe();
     });
@@ -55,27 +55,27 @@ export default function Dashboard() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    {items.map((item, index)=> 
+    
 
 
-    <main key={index} className="bg-gray-100 min-h-screen">
+    <main  className="bg-gray-100 min-h-screen">
+    {/* {items.map((item, index)=>  */}
 
-    <div className='flex justify-between px-6 pt-4'>
-    <h2>{item.laundromatName} Dashboard</h2>
+    <><div  className='flex justify-between px-6 pt-4'>
+        {/* <h2>{item.laundromatName} Dashboard</h2> */}
 
-      {/* <h2>Welcome Back, {item.userName}</h2> */}
-      <h2>Welcome Back, Manager</h2>
-    </div>
-    <TopCards />
-    <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+        {/* <h2>Welcome Back, {item.userName}</h2> */}
+        {/* <h2>Welcome Back, Manager</h2> */}
+      </div><TopCards /><div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
 
-      <BarChart />
-      <RecentOrders />
-      
-    </div>
+          <BarChart />
+          <RecentOrders />
+
+        </div></>
+    {/* )} */}
     </main>
     
-    )}
+    
       </>
       </SideBar>
   )
