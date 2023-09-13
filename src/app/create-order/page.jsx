@@ -173,7 +173,7 @@ export default function NewOrder() {
             </div> */}
 
             {!showForm && <div className='h-screen flex justify-center items-center px-6 pt-4'>
-            <button onClick={onCreateNewOrder} className='bg-blue-500 text-white text-3xl rounded-lg px-4 py-2'>Create New Order</button>
+            <button onClick={onCreateNewOrder} className='bg-blue-500 text-white text-3xl rounded-lg px-6 m-10 py-4'>Create New Order</button>
             </div>}
 
                     

@@ -178,7 +178,7 @@ export default function History()  {
     
     <div className='bg-gray-100 min-h-screen'>
     <div className='flex justify-between px-6 pt-4'>
-    <h2 className='text-xl font-semibold'>Metrics</h2>
+    <h2 className='text-2xl font-semibold'>Metrics</h2>
     
     </div>
 

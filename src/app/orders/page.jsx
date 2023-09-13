@@ -84,10 +84,10 @@ const session = useSession({
     <Sidebar>
     
     <div className='bg-gray-100 min-h-screen'>
-    <div className='flex justify-between px-6 pt-4'>
-    <h2 className='text-xl font-semibold'>Active Orders</h2>
+    <div className='flex justify-between px-7 pt-4'>
+    <h2 className='text-2xl font-semibold'>Active Orders</h2>
      
-      <h2>Welcome Back, User</h2>
+      
     </div>
 
 <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">

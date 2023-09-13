@@ -82,7 +82,7 @@ return (
 
     
             
-        <form onSubmit={handleSubmit(onSubmit)} className='px-4 py-4  w-full sm:w-1/2  '>
+        <form onSubmit={handleSubmit(onSubmit)} className='px-4 py-4 ml-10 w-full sm:w-1/2  '>
         <div className='mb-10 font-semibold text-2xl'>
         Add Bank Account details
 
