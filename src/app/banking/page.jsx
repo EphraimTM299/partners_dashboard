@@ -66,8 +66,6 @@ export default function Banking() {
         
       });
     
-  
-
 return (
 <Sidebar>
 
@@ -77,7 +75,6 @@ return (
     
 </div>
 
-        
 <div class="overflow-hidden w-[90vw] py-16 px-10 bg-white justify-between flex flex-wrap rounded-lg border border-gray-200 shadow-md m-5">
 
     
@@ -160,14 +157,8 @@ return (
                 
             </a>
         </div>
-       
-      
-
-
-</div>
-
-
-       
+ 
+</div>      
 </div>
 </Sidebar>
 
