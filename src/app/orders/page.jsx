@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar'
 import moment from 'moment';
 import {RxPerson} from 'react-icons/rx'
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import {useDownloadExcel} from 'react-export-table-to-excel'
 
 import {
   collection,
@@ -60,6 +61,18 @@ const session = useSession({
     });
   }, []);
 
+  
+  // download data
+  const tableRef =useRef(null);
+
+  const {onDownload} = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename:"Active Orders",
+    sheet:'Active Orders'
+  })
+
+
+
   // Update items in database
   const updateOrder = async (orderId, orderStatus) => {
     
@@ -91,7 +104,7 @@ const session = useSession({
     </div>
 
 <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
-  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+   <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
     <thead class="bg-gray-50">
       <tr>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Order Number</th>

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import {PiMicrosoftExcelLogoDuotone} from 'react-icons/pi'
 import Sidebar from '../components/Sidebar'
 import {RxPerson} from 'react-icons/rx'
 import { useSession } from 'next-auth/react';
@@ -15,6 +16,7 @@ import { Chart as ChartJS,
 
       Legend } from 'chart.js';
 import { Doughnut, Line } from 'react-chartjs-2';
+import {useDownloadExcel} from 'react-export-table-to-excel'
 
 import {
   collection,
@@ -98,12 +100,12 @@ export default function History()  {
     }]
   }
   const data4 = {
-    labels:["Laundry", 'Dry Cleaning', "Sneaker Cleaning", "Ironing"],
+    labels:["Laundry", 'Dry Cleaning',  "Ironing"],
     datasets:[{
       label:'Revenue Breakdown',
-      data:[525,750, 920, 480],
-      backgroundColor:['#e2725b', '#938ba1', "#33261d", "#e0b0ff"],
-      borderColor:['#e2725b', '#938ba1', "#33261d", "#e0b0ff"],
+      data:[525,750, 920],
+      backgroundColor:['#e2725b', '#938ba1', "#33261d" ],
+      borderColor:['#e2725b', '#938ba1', "#33261d"],
     }]
   }
 
@@ -129,12 +131,7 @@ export default function History()  {
     }
   }}
 
-  const links = [
-    { href: '/account-settings', label: 'Account settings' },
-    { href: '/support', label: 'Support' },
-    { href: '/license', label: 'License' },
-    { href: '/sign-out', label: 'Sign out' },
-  ]
+  
 
 
   // Read items from database
@@ -155,6 +152,16 @@ export default function History()  {
       return () => unsubscribe();
     });
   }, []);
+
+
+  const tableRef =useRef(null);
+
+  const {onDownload} = useDownloadExcel({
+    currentTableRef: tableRef.current,
+    filename:"Active Orders",
+    sheet:'Active Orders'
+  })
+
 
   // Delete items from database
   const deleteItem = async (id) => {
@@ -297,7 +304,8 @@ export default function History()  {
 
 
   <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
-  <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+  <button onClick={onDownload} className="px-16 m-5 py-5 font-semibold text-white rounded-xl bg-blue-500 justify-between"><span className='flex place-items-center justify-center items-baseline'>Export Data < PiMicrosoftExcelLogoDuotone className='ml-2 pt-0 pb-0' size={25}/> </span>   </button>
+  <table ref={tableRef} class="w-full border-collapse bg-white text-left text-sm text-gray-500">
     <thead class="bg-gray-50">
       <tr>
       <th scope="col" class="px-6 py-4 font-medium text-gray-900">Order Number</th>
@@ -318,12 +326,12 @@ export default function History()  {
       <td class="px-6 py-4">{item.orderNumber}</td>
         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
           <div class="relative py-2">
-          <RxPerson size={20}/>
+          {/* <RxPerson size={20}/> */}
             
           </div>
           <div class="text-sm">
-            <div class="font-medium text-gray-700">{item.userName}</div>
-            <div class="text-gray-400">{item.orderNumber}</div>
+            <div class="">{item.userName}</div>
+            
           </div>
         </th>
         <td class="px-6 py-4">
