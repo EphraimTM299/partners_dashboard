@@ -959,6 +959,11 @@
     "@typescript-eslint/types" "5.62.0"
     eslint-visitor-keys "^3.3.0"
 
+"@uc-react-ui/multiselect@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@uc-react-ui/multiselect/-/multiselect-0.1.1.tgz#80cec71fbc991d2991b3d06eb0b18d0bf95c6faa"
+  integrity sha512-EFPOcc0yM3TCw8F/1l4DgNFmxYjLyOZawBXrpT1XXH6mGvUMlqZ+cTQR/JpDNNFbfqM2lHoFI0G4cB2TRGGGwA==
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"

@@ -8,6 +8,9 @@ import { db } from '../firebase';
 import { useForm, useWatch } from "react-hook-form";
 import { useSession } from 'next-auth/react';
 import SearchBox from '../components/searchbox';
+import MultiSelectComponent from '../components/multiselect';
+
+
 
 
 export default function NewOrder() {
@@ -30,17 +33,12 @@ export default function NewOrder() {
 
     }
 
-    function onLaundrySelect(event){
-        console.log(event.target.value)
-    }
+    
     function onServiceSelect(event){
         setIsLaundry(event.target.value)
     }
 
-    function onSelectDry(event){
-        setIsDry(event.target.value)
-        console.log(event.target.value)
-    }
+   
 
     const handleChange = event => {
         setIsChecked(!isChecked);
@@ -85,7 +83,7 @@ export default function NewOrder() {
         // data.preventDefault();
         console.log("data",data.email);
         console.log(event);
-        // throw new Error();
+       
       
       } 
 
@@ -163,15 +161,16 @@ export default function NewOrder() {
           value: "100",
         },
       ];
+
+
+   
+    
       
             return (
             <Sidebar>
 
             <div className='bg-white min-h-screen'>
-                {/* <div className='flex justify-between px-6 pt-4'>
-                <h2 className='text-xl font-semibold'>Create New Order</h2>
-            </div> */}
-
+             
             {!showForm && <div className='h-screen flex justify-center items-center px-6 pt-4'>
             <button onClick={onCreateNewOrder} className='bg-blue-500 text-white text-3xl rounded-lg px-6 m-10 py-4'>Create New Order</button>
             </div>}
@@ -201,6 +200,7 @@ export default function NewOrder() {
                                 </div>
 
                                 <div>
+                                {/* <hr className="solid w-full m-5 justify-center place-items-center"/> */}
                                 
                                 <label htmlFor="service" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Service</label>
                                 <select onChange={onServiceSelect} className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'  name="" id="">
@@ -228,26 +228,24 @@ export default function NewOrder() {
 
                             {/* field for dy cleaning */}
                             {isLaundry == 'Dry Cleaning' && <div> 
-                                    <label htmlFor="drycleaning" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Items</label>
-                                    <select  onChange={e=> updateDryP(+e.target.value)}  className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
+                                    {/* <label htmlFor="drycleaning" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Items</label>
+                                    <select   onChange={e=> updateDryP(+e.target.value)}  className=' bg-gray-50 border e border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
                                     {dryClean.map((option, i) => (
                                     <option key={i} value={option.value}>{option.label}</option>
                                     ))}
                                         
-                                    </select>
-                            </div>}
+                                    </select> */}
 
-                            {/* field for sneakers
-                            {isLaundry == 'Sneakers' && <div> 
-                                    <label htmlFor="drycleaning" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Care Type</label>
-                                    <select   className=' bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ' name="" id="">
-                                    {sneakerCare.map((option, i) => (
-                                    <option key={i} value={option.value}>{option.label}</option>
-                                    ))}
-                                        
-                                    </select>
-                            </div>}
-                             */}
+                                    <MultiSelectComponent/>
+
+                                    <button type="submit" className="text-white mt-6 bg-blue-700 block hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to Order
+                                    </button>
+                            </div>
+                            
+                            
+                            }
+
+                          
                             </div>
                             
                                     <label className="relative mb-8 inline-flex items-center cursor-pointer">
@@ -281,9 +279,55 @@ export default function NewOrder() {
                    
                     
                         </div>
+
+
+  <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
+   <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <thead className="bg-gray-50">
+      <tr>
+      <th scope="col" className="px-6 py-4 font-medium text-gray-900">Item</th>
+        <th scope="col" className="px-6 py-4 font-medium text-gray-900">Service Name</th>
+        <th scope="col" className="px-6 py-4 font-medium text-gray-900">Amount </th>
+        
+      </tr>
+    </thead>
+    
+   
+    <tbody  className="divide-y divide-gray-100 border-t border-gray-100">
+      
+      <tr className="hover:bg-gray-50"  >
+      <td className="px-6 py-4">te</td>
+        <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+          <div className="relative py-2">
+          {/* <RxPerson size={20}/> */}
+            
+          </div>
+          <div className="text-sm">
+            <div className="font-medium text-gray-700">rest</div>
+            <div className="text-gray-400">test</div>
+          </div>
+        </th>
+       
+       
+        <td className="px-6 py-4">
+        test
+        </td>
+
+        
+      </tr>
+     
+    </tbody>
+     
+    </table>
+</div>
                     </div>
+
+
+ 
  
             </div>}
+
+ 
               
             </div>
             </Sidebar>
