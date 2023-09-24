@@ -18,7 +18,7 @@ const RecentOrders = () => {
     useEffect(() =>  {
         const q = query(collection(db, 'orders'));
            
-        const queryRef = query(q, where('laundromat', '==', 'WashALot'));
+        const queryRef = query(q, where('laundromat', '==', 'WashALot'), where("orderStatus",'!=',"Complete"));
         const unsubscribe = onSnapshot(queryRef, (querySnapshot) => {
           let itemsArr = [];
     
@@ -33,7 +33,7 @@ const RecentOrders = () => {
   return (
     <div>
         <div className=' w-full col-span-1 relative lg:h-[80vh] h-[50vh] m-auto p-4 border bg-white rounded-lg bg white overflow-scroll'>
-            <h1>Recent Orders</h1>
+            <h1>Active Orders</h1>
             <ul>
                 {items.map((item, id)=>(
                     <li key={id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer'>

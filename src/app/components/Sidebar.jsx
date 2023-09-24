@@ -62,7 +62,7 @@ const Sidebar = ({children}) => {
                     </div>
 
                     <div>
-                    <p className='text-xs px-2 font-semibold'>Metrics</p>
+                    <p className='text-xs px-2 font-semibold'>Reports</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
@@ -77,7 +77,6 @@ const Sidebar = ({children}) => {
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
             </div>
-
 
         </div>
       <main className='ml-20 w-full'>{children}</main>

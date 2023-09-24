@@ -26,6 +26,7 @@ import {
   deleteDoc,
   where,
   doc,
+  orderBy,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -139,7 +140,7 @@ export default function History()  {
     const q = query(collection(db, 'orders'));
     // const q = db.collection('laundromat');
 
-    const queryRef = query(q, where('laundromat', '==', 'WashALot' ), where('orderStatus', '==','Complete'));
+    const queryRef = query(q, where('laundromat', '==', 'WashALot' ), where('orderStatus', '==','Complete'), orderBy("pickup", 'desc'));
     const unsubscribe = onSnapshot(queryRef, (querySnapshot) => {
       let itemsArr = [];
 
