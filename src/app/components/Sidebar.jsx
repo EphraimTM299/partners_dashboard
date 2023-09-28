@@ -14,14 +14,17 @@ const Sidebar = ({children}) => {
         <div className='fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
             <div className='flex flex-col items-center'>
                 <Link href='/dashboard'>
-                    <div className='bg-blue-500 p-3 rounded-lg inline-block text-white'>
+                    <div className='bg-blue-600 ml-1 p-3 rounded-lg inline-block text-white'>
                         <RxDashboard size={20}/>
+                    </div>
+                    <div>
+                        <p className='text-xs font-semibold'> Dashboard</p>
                     </div>
                    
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
 
-                <Link href="/create-order">
+                {/* <Link href="/create-order">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <BiCartAdd size={20}/>
                     </div>
@@ -29,11 +32,11 @@ const Sidebar = ({children}) => {
                     <div>
                         <p className='text-xs px-2 font-semibold'> New Order</p>
                     </div>
-                </Link>
-                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+                </Link> */}
+                {/* <span className='border-b-[1px] border-gray-200 w-full p-2'></span> */}
 
 
-                <Link href="/orders">
+                {/* <Link href="/orders">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <HiOutlineShoppingBag size={20}/>
                     </div>
@@ -41,8 +44,23 @@ const Sidebar = ({children}) => {
                     <div>
                     <p className='text-xs px-2 font-semibold'> Active Orders</p>
                     </div>
+                </Link> */}
+                {/* <span className='border-b-[1px] border-gray-200 w-full p-2'></span> */}
+
+                {/* Reports */}
+
+                <Link href="/history">
+                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
+                    <RxPerson size={20}/>
+                    </div>
+
+                    <div>
+                    <p className='text-xs px-1 font-semibold'>Analytics</p>
+                    </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+
+                {/* banking */}
                 
                 <Link href="/banking">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
@@ -50,20 +68,14 @@ const Sidebar = ({children}) => {
                     </div>
                     
                     <div>
-                        <p className='text-xs px-2 font-semibold'>Banking</p>
+                        <p className='text-xs px-1 font-semibold'>Payments</p>
                     </div>
                 </Link>
                 <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
-                <Link href="/history">
-                <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
-                    <RxPerson size={20}/>
-                    </div>
 
-                    <div>
-                    <p className='text-xs px-2 font-semibold'>Reports</p>
-                    </div>
-                </Link>
-                <span className='border-b-[1px] border-gray-200 w-full p-2'></span>
+
+                {/* logout */}
+               
                 <Link  onClick={() => signOut( {callbackUrl:"/"})} href="">
                 <div className='bg-gray-100 px-4 p-4 cursor-pointer my-4 hover:bg-gray-200  inline-block rounded-lg'>
                     <HiOutlineLogout size={20}/>

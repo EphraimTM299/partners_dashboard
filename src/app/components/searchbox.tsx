@@ -42,8 +42,6 @@ export default function SearchBox ({onSelectAddress, defaultValue}:ISearchBoxPro
 
 }
 
-
-
 function ReadySearchBox({onSelectAddress, defaultValue}:ISearchBoxProps){
     const {
         ready,
@@ -60,6 +58,7 @@ function ReadySearchBox({onSelectAddress, defaultValue}:ISearchBoxProps){
             const results = await getGeocode({address})
             const {lat, lng}= await getLatLng(results[0]);
             onSelectAddress(address, lat, lng);
+            {console.log(lat, lng)}
             
         } catch (error) {
             console.log(error)

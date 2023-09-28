@@ -8,7 +8,9 @@ import RecentOrders from '../components/RecentOrders';
 import SideBar from '../components/Sidebar'
 import DoughnutChart from '../components/Doughnut'
 import CustomHeader from '../components/Header';
-import BarChart from '../components/BarChart'
+
+import ActiveOrders from '../components/ActiveOrders'
+import BarChart from '../components/BarChart';
 
 export default function Dashboard() {
     
@@ -37,15 +39,17 @@ export default function Dashboard() {
     <main  className="bg-gray-100 min-h-screen">
     
 
-      <CustomHeader/>
+      {/* <CustomHeader/> */}
     <TopCards/>
-          
+    <ActiveOrders/>
+    
       <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
-
-          <BarChart />
-          {/* <Orders/> */}
-          <DoughnutChart/>
-          <RecentOrders />
+       
+     
+         
+          
+          
+         
 
     </div>
      
