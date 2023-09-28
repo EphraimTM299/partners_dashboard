@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React ,{useState, useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
@@ -45,9 +45,7 @@ const DoughnutChart = () => {
          
         }]
       }
-    const [chartData, setChartData]= useState({
-        datasets:[],
-    });
+   
 
     const options =
   {

@@ -9,8 +9,6 @@ import { useForm, useWatch } from "react-hook-form";
 import { GeoPoint, addDoc,Timestamp, collection, doc, getFirestore, setDoc} from 'firebase/firestore';
 import { db } from '../firebase';
 
-
-
 export default function Banking() {
 
     const { register,setValue, handleSubmit } = useForm({
@@ -76,9 +74,7 @@ return (
 </div>
 
 <div class="overflow-hidden w-[90vw] py-16 px-10 bg-white justify-between flex flex-wrap rounded-lg border border-gray-200 shadow-md m-5">
-
-    
-            
+          
         <form onSubmit={handleSubmit(onSubmit)} className='px-4 py-4 ml-10 w-full sm:w-1/2  '>
         <div className='mb-10 font-semibold text-2xl'>
         Add Bank Account details
@@ -115,8 +111,6 @@ return (
         )} type="tel" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678"  required/>
                     </div>
                   
-
-
                     <div>
                     
                         <label for="visitors" class="block mb-2 font-medium text-gray-900 dark:text-white">Bank Account Type</label>
@@ -133,12 +127,10 @@ return (
                     </div>
                    
                 </div>
-                
-               
+             
+              
                 <label class="block mb-2 font-medium  text-gray-900 dark:text-white" for="file_input">Upload Account Confirmation Letter</label>
                 <input class="block w-full text-sm mb-8 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/>
-
-
                
                 <button type="submit" class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit Account Details</button>
 
